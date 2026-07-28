@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+:root {
+  --color-snow: #fbfdfe;
+  --color-ice: #f0f7fb;
+  --color-ink: #0b1418;
+  --color-ink-deep: #070e12;
+  --color-ink-soft: #5c6f7a;
+  --color-sky: #8ecae6;
+  --color-sky-deep: #219ebc;
+  --color-line: rgba(11, 20, 24, 0.12);
+  --color-line-soft: rgba(11, 20, 24, 0.06);
+  --color-line-dark: rgba(251, 253, 254, 0.14);
+}
+
+@theme inline {
+  --color-snow: var(--color-snow);
+  --color-ice: var(--color-ice);
+  --color-ink: var(--color-ink);
+  --color-ink-deep: var(--color-ink-deep);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-sky: var(--color-sky);
+  --color-sky-deep: var(--color-sky-deep);
+  --color-line: var(--color-line);
+  --color-line-soft: var(--color-line-soft);
+  --color-line-dark: var(--color-line-dark);
+
+  --font-display: var(--font-sora);
+  --font-body: var(--font-hanken);
+}
+
+body {
+  background: var(--color-snow);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+::selection {
+  background: var(--color-sky);
+  color: var(--color-ink);
+}
+
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 42s linear infinite;
+}
+
+@keyframes cue-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+.animate-cue-bob {
+  animation: cue-bob 1.8s ease-in-out infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(33, 158, 188, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(33, 158, 188, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(33, 158, 188, 0);
+  }
+}
+
+.animate-pulse-dot {
+  animation: pulse-ring 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes glow-drift {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.08);
+  }
+}
+
+.animate-glow-drift {
+  animation: glow-drift 9s ease-in-out infinite;
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-menu-in {
+  animation: menu-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-cue-bob,
+  .animate-pulse-dot,
+  .animate-glow-drift,
+  .animate-menu-in {
+    animation: none;
+  }
+}
